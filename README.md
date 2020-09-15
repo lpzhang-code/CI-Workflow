@@ -1,3 +1,4 @@
-## Test Project
+## CI and Containerisation
 
-Implement knowledge relating to CI (GitHub Actions) and Containerisation (Docker)
+This project contains notes and implementation in relation to CI (GitHub Actions) and Containerisation (Docker)
+
