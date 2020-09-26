@@ -4,7 +4,7 @@ from maths import square, subtract
 
 
 def test_square():
-    assert square(5) == 20
+    assert square(5) == 25
 
 
 def test_subtract():
