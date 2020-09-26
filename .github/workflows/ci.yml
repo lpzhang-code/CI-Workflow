@@ -15,3 +15,5 @@ jobs:
         with:
           username: ${{ secrets.HUB_USERNAME }}
           password: ${{ secrets.HUB_PASSWORD }}
+      - name: Push container image
+        run: docker push lpzhang5/example_image:latest
