@@ -4,5 +4,4 @@ jobs:
   build-test-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the commit
       - uses: actions/checkout@v2
