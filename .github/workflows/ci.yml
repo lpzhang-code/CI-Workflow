@@ -6,7 +6,3 @@ jobs:
     steps:
       - name: Checkout the commit
       - uses: actions/checkout@v2
-      - name: Build the image
-      - run: docker build -t example_image:latest .
-      - name: Run unit tests
-      - run: docker-compose run test pytest
