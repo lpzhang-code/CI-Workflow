@@ -9,8 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set tag name
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/develop"]; then
+              echo "::set-env name=tag::staging"
+          else
+              echo "::set-env name=tag::prod"
+          fi
       - name: Build container image
-        run: docker build -t lpzhang5/example_image:latest .
+        run: docker build -t lpzhang5/example_image:env.tag .
       - name: Run unit tests
         run: docker-compose run test pytest
       - name: Login to DockerHub
@@ -21,4 +28,4 @@ jobs:
           password: ${{ secrets.HUB_PASSWORD }}
       - name: Push container image
         if:  ${{ success() }}
-        run: docker push lpzhang5/example_image:latest
+        run: docker push lpzhang5/example_image:env.tag
