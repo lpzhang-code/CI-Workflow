@@ -8,4 +8,4 @@ def test_square():
 
 
 def test_subtract():
-    assert subtract(100, 10) == 90
+    assert subtract(100, 10) == 50
