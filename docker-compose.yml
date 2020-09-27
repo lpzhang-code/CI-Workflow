@@ -7,7 +7,7 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
     test:
-        image: lpzhang5/example_image:latest
+        image: lpzhang5/example_image
         volumes:
             - .:/code
         depends_on: 
