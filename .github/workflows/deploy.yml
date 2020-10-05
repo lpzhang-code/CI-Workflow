@@ -14,6 +14,6 @@ jobs:
                     echo "::set-env name=COMPOSE_SUFFIX::prod"
                     echo "::set-env name=PROJECT::clerk"
                 else
-                    echo "Please run with master (prod) or develop (staging) branch"
+                    echo "Please run on either master (prod) or develop (staging) branch"
                     exit 1
                 fi
