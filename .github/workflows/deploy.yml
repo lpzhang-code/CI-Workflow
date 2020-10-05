@@ -5,3 +5,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - name: Set variables
+              run: |
+                if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+                    echo "deploying staging"
+                else
+                    echo "deploying production"
+                fi
