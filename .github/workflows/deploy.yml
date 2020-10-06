@@ -18,5 +18,5 @@ jobs:
                     exit 1
                 fi
             - name: Run deploy script
-              run: deploy.sh
+              run: ./deploy.sh
               shell: bash
