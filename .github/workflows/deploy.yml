@@ -8,11 +8,11 @@ jobs:
             - name: Set env vars
               run: |
                 if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-                    echo "::set-env name=COMPOSE_SUFFIX::staging"
-                    echo "::set-env name=PROJECT::clerk_test"
+                    echo "COMPOSE_SUFFIX=staging" >> $GITHUB_ENV
+                    echo "PROJECT=clerk_test" >> $GITHUB_ENV
                 elif [ "${{ github.ref }}" = "refs/heads/master" ]; then
-                    echo "::set-env name=COMPOSE_SUFFIX::prod"
-                    echo "::set-env name=PROJECT::clerk"
+                    echo "COMPOSE_SUFFIX=prod" >> $GITHUB_ENV
+                    echo "PROJECT=clerk" >> $GITHUB_ENV
                 else
                     echo "Please specify either the develop branch for staging or master branch for prod"
                     exit 1
