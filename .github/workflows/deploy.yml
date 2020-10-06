@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Set variables
+            - name: Set env vars
               run: |
                 if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
                     echo "::set-env name=COMPOSE_SUFFIX::staging"
@@ -14,6 +14,9 @@ jobs:
                     echo "::set-env name=COMPOSE_SUFFIX::prod"
                     echo "::set-env name=PROJECT::clerk"
                 else
-                    echo "Please run with master (prod) or develop (staging) branch"
+                    echo "Please specify either the develop branch for staging or master branch for prod"
                     exit 1
                 fi
+            - name: Run deploy script
+              run: deploy.sh
+              shell: bash
