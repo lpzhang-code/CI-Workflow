@@ -74,3 +74,63 @@ jobs:
 ```
       - run: bats -v
 ```
+
+**Second Example**
+
+- following example shows making env vars available to client.js script
+
+```
+jobs:
+  example-job:
+      steps:
+        - name: Connect to Postgres
+          run: node client.js
+          env:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432
+```
+
+**Third Example**
+
+- store script inside repository, then run using action by specifying path and shell type
+
+```
+jobs:
+  example-job:
+      steps:
+        - name: Run build script
+          run: ./.github/scripts/build.sh
+          shell: bash
+```
+
+**Fourth Example**
+
+- we can share files between jobs in the same workflow, or save them for later reference, by storing them as artifacts; create and upload file as artifact
+
+```
+jobs:
+  example-job:
+      steps:
+        - run: |
+            expr 1 + 1 > output.log
+          shell: bash
+        - name: Upload output file
+          uses: actions/upload-artifact@v1
+          with:
+            name: output-log-file
+            path: output.log
+```
+
+- now download the artifact in separate workflow
+
+```
+jobs:
+  example-job:
+      steps:
+        - name: Download single artifact
+          uses: actions/download-artifact@v2
+          with:
+            name: output-log-file
+```
+
+**Fifth Example**
