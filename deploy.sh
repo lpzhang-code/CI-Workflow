@@ -1,2 +1,0 @@
-echo "$COMPOSE_SUFFIX"
-echo "$PROJECT"
