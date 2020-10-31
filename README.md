@@ -134,3 +134,61 @@ jobs:
 ```
 
 **Fifth Example**
+
+- although jobs in the same workflow normally run in parallel, we can run jobs in sequence by creating dependency between second and first job where second won't run if first fails
+
+```
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./setup_server.sh
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./build_server.sh
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./test_server.sh
+```
+
+**Sixth Example**
+
+- use build matrix to run job across multiple combinations; the below build matrix runs job across different versions of node.js
+
+```
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [6, 8, 10]
+    steps:
+      - uses: actions/setup-node@v1
+      with:
+        node-version: $
+```
+
+**Seventh Example**
+
+- expressions can be used to set variables
+
+```
+env:
+  env_var: ${{ <expression> }}
+```
+
+- expressions are commonly used with `if` keyword to determine if action should be run
+
+```
+if: ${{ <expression> }}
+```
+
+- use context objects inside expressions to retrieve information about workflows, runners, jobs, and steps (actions); github object contains information about workflow, env object contains env vars that have been set, etc
+
+```
+github.ref = 'ref/heads/develop'
+```
