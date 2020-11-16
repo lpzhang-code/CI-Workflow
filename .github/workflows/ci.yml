@@ -17,15 +17,15 @@ jobs:
               echo "TAG=prod" >> $GITHUB_ENV
           fi
       - name: Build container image
-        run: docker build -t lpzhang5/example_image:${TAG} .
+        run: docker build -t lpzhang5/example_image:${TAG} -f docker/Dockerfile .
       - name: Run unit tests
-        run: docker-compose run test pytest
+        run: docker-compose -f docker/docker-compose.yml run test pytest
       - name: Login to DockerHub
-        if: ${{ success() }}
+        if: success()
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.HUB_USERNAME }}
           password: ${{ secrets.HUB_PASSWORD }}
       - name: Push container image
-        if: ${{ success() }}
+        if: success()
         run: docker push lpzhang5/example_image:${TAG}
