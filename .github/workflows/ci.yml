@@ -19,7 +19,7 @@ jobs:
       - name: Build container image
         run: docker build -t lpzhang5/example_image:${TAG} -f docker/Dockerfile .
       - name: Run unit tests
-        run: docker-compose -f docker/docker-compose.yml run test pytest
+        run: docker-compose -f docker/docker-compose.yml run --rm test pytest -vv
       - name: Login to DockerHub
         if: success()
         uses: docker/login-action@v1
