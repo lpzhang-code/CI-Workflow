@@ -17,7 +17,7 @@ jobs:
               echo "TAG=prod" >> $GITHUB_ENV
           fi
       - name: Build container image
-        run: docker build -t lpzhang5/example_image:${TAG} --no-cache -f docker/Dockerfile .
+        run: docker build -t lpzhang5/example_image:${TAG} -f docker/Dockerfile .
       - name: Run unit tests
         run: docker-compose -f docker/docker-compose.yml run test pytest
       - name: Login to DockerHub
