@@ -18,7 +18,7 @@ jobs:
               exit 1
           fi
       - name: Run deploy script
-        run: ./scripts/deploy.sh
+        run: ./app/scripts/deploy.sh
         shell: bash
         env:
           PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
