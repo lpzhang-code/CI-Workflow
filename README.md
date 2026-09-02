@@ -11,8 +11,9 @@ The workflow builds a container image from the Dockerfile, runs unit tests insid
 Containerisation can be a difficult concept, but is easier to grasp when considering the following points:
 
 - the Dockerfile contains instructions for building the container image. It usually involves installing dependencies, and copying the source code into the root directory of the container (which we can name).
-- once the source code is copied into the container, and mounted with docker compose, changes made inside of the container are persisted outside of it (and vice versa).
-- we run a container using an image we built ourselves or by downloading a prebuilt image. We can share images on DockerHub, in theory allowing anyone to run the application in a standardised environment.
+- once the source code is copied into the container, and volume mounted with docker compose, changes made to the source code with an editor will show up inside the running container, but the underlying container image will stay the same, container images are immutable and need to be rebuilt to account for the updated source code
+- we run a container (with its own filesystem) using an image we built ourselves or by downloading a prebuilt image. We can share images on DockerHub, in theory allowing anyone to run the application in a standardised environment.
+- `.dockerignore` files allow us to exclude items from the build context, which prevents secrets from leaking into the container image, slims down the build context and speeds up the build process, and results in a smaller final container image
 
 ### GitHub Actions
 
